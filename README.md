@@ -1,2 +1,2 @@
 # PiWood-Derby
-An Opensource Raspberry pi solution to Pinewood Derbies
+An Opensource Raspberry Pi solution to Pinewood Derbie
