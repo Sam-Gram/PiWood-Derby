@@ -6,7 +6,7 @@ class Gate():
             GPIO.setmode(GPIO.BOARD)
 
         # Pin for the solenoid release gate
-        self.gateOutputPin = 19
+        self.gateOutputPin = 33
 
         # Setup GPIO pin
         GPIO.setup(self.gateOutputPin, GPIO.OUT)

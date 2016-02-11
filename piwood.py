@@ -149,6 +149,7 @@ class MainWindow(QMainWindow):
     def getWhichRace(self, id):
         times = QSqlQuery("SELECT (time_1, time_2, time_3) FROM racers WHERE id = " + str(id))
         times.first()
+
         print(times.record().field(0).value())
         if times.record().field(0).value() is None:
             return 1
