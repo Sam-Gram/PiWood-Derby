@@ -1,0 +1,180 @@
+#+TITLE: PiWood-Derby Senior Project Proposal
+#+AUTHOR: Sam Graham
+#+LaTeX_CLASS: koma-article
+#+OPTIONS: toc:nil p:t f:t
+#+HTML_HEAD: <style>.timestamp-kwd, .timestamp { color: black;}</style>
+
+* Scripture
+
+Alma 37: 6 "Now ye may suppose that this is foolishness in me; but behold I say unto you, that by small and simple things are great things brought to pass; and small means in many instances doth confound the wise."
+
+* Abstract
+
+** The focus
+
+The focus of this project is embedded systems.
+
+** The application
+
+The application of this project is making a Pinewood derby track solution.
+
+* Background
+
+** Why this topic is of interest
+
+There are two main reasons why this project is of interest to me.
+When I was a cub scout I watched a couple of elderly gentlemen manage our Pinewood derby race. 
+They had a system that managed the cars, the timing on the track, and a few electronic 
+signs stating which car had come in first place and so on. I was intrigued at how they had done
+any of this. They kindly explained that they had used E3 embedded systems software and laser interrupts
+with timers. I was really impressed with this and said to myself "I am going to learn how to do this."
+
+Additionally, I was at my ten year old brother's Pinewood derby competition recently. I was shocked at how bad the setup was
+and how often things would fail. The power was knocked out twice (by siblings of the scouts kicking the power out of the wall)
+and all the data was lost resulting in having to start the race all over again. The code being run was written in the 90s and
+was also being run on a computer from that time period. The sensors were photo sensitive and shadows being cast in the room 
+set them off. This led to multiple reruns of the cars. The scouts where disinterested in the race, because the system gave
+no feedback. It really was a miserable experience for many. I hope to improve the situation for the scouts (and possibly
+adults) with Pinewood derby.
+
+
+** Prior work by others
+
+There are many repositories on GitHub that have aspects of Pinewood derby in them[1]. There is even a project similar to what I may wish to do. [2]
+There are people with full web pages on their solutions to this problem. [3]
+
+** Prior work by me
+
+I have not done much prior work. I have thought about this project and made the GitHub repository. [4] I have also made a Pinewood derby car.
+
+
+* Description
+
+This project is to enable people to download a Raspberry Pi script (embedded system with easy updating features) that, when combined with the
+physical hardware setup will enable them to make their own track.
+Success for this project will be an open source solution to pinewood derby races, and for me to have learned about embedded systems.
+
+| Tasks                                         | Methods(s)                                                                   |
+|-----------------------------------------------+------------------------------------------------------------------------------|
+| Preliminary Research and Proposal Preparation | Google, sending the proposal to Brother Burton                               |
+| Research                                      | Google, talking to Brother Jones about power needs                           |
+| Obtain or make track                          | Google, figuring out how much each costs, go with the least expensive option |
+| Make Sensor box                               | Make sure sensors can be read by Raspberry Pi accurately                     |
+| Make release gate                             | Make sure Raspberry pi can send Derby cars down the track                    |
+| Timing                                        | Make sure timing works and is displayed somehow.                             |
+| Gate display                                  | Show place results on display for people                                     |
+| Write-up                                       | Document all that I have done on GitHub.com for other people                 |
+
+
+* Scope
+
+This project will include the code to run the hardware. It will include the hardware needed to run the system. It will include
+setting up this project on a Pinewood derby track. It will include the installation of hardware on a particular track. It will include
+informing scouts in someway that there car is next. It will include final results of races.
+
+The project will not include things like how to build the track itself. This project will assume at least three cars and three lanes. 
+It will not include things like how to work with power tools, or soldering,
+et cetera. This may be included after the senior project is done however.
+
+* Tasks and Schedule
+
+** Week 1 4/25/2016-4/30/2016 12 hrs.
+
+Finish the Requirements Specification. Start into acquiring track.
+
+** Week 2 5/2/2016-5/7/2016 12 hrs.
+
+Have track available. 
+Figure out power failure system, figure out hardware connection from start lever to Raspberry Pi.
+
+** Week 3 5/9/2016-5/14/2016 12 hrs.
+
+Get connection to Raspberry Pi to sensors at the end of the line. Make sure software code can receive the information from sensors.
+At least start on getting timing from all sensors down to a reasonable level.
+
+** Week 4 5/16/2016-5/21/2016 12 hrs.
+
+Put sensors into a box at the end of the track. Start researching how to put in place signals (1st, 2nd, 3rd). Possibly do this using an Arduino system. Order place signals.
+
+** Week 5 5/23/2016-5/28/2016 12 hrs.
+
+Start working on the track handling an actual race. Work on wiring in the place signals. Get two more derby cars. Ensure timing works for the cars.
+
+** Week 6 5/30/2016-6/4/2016 (Memorial Day Monday) 12 hrs.
+
+Finish wiring in the place signals. Look at hazardous situations, such as ties, cars falling off of the track, etc. Start working on scheduling test of track with friends or local scout troops (stretch goal).
+
+** Week 7 6/6/2016-6/11/2016 12 hrs.
+
+Work on track's bugs. Make sure the system works as desired. Go over track design. Firm up testing plans.
+
+** Week 8 6/13/2016-6/18/2016 12 hrs.
+
+Continue working on finalizing track, test track with others, work on any bugs that arise.
+
+** Week 9 6/20/2016-6/25/2016 12 hrs.
+
+Work on bugs from last week, schedule Pinewood derby with siblings-in-law. Ask for feedback and find bugs.
+
+** Week 10 6/27/2016-7/2/2016 (Wife due this week) 12 hrs.
+
+Work on bugs from last week. Start on documentation for GitHub. Copy script from GitHub after clean install on Raspberry Pi.
+
+** Week 11 7/4/2016-7/9/2016 (Independence Day) 12 hrs.
+
+Work on bugs from last week. Polish GitHub documentation.
+
+** Week 12 7/11/2016-7/16/2016 12 hrs.
+
+Present work, finish up any remaining bugs. 
+
+** Total
+
+13 hours of previous work and this week + 144 hours over the next 12 = 157 hours.
+
+* Deliverables
+
+- Track w/ system embedded
+- GitHub documentation (including design)
+- GitHub script and source code
+
+* Applicability
+
+Previously I have learned about the basics of learning how to wire up integrated circuits (CS 160).
+Additionally, I have learned about the basics of programming. 
+
+I have not taken the embedded systems class, I do not know how to connect a Raspberry Pi to actual hardware.
+This project is very outside of what I have done in class previous to this.
+
+* Required Resources with Costs
+
+| Item                        | Options                                  |    Cost ($) |
+|-----------------------------+------------------------------------------+-------------|
+| Track                       | Aluminum 3-lane 35 foot[5]               |      740.00 |
+|                             | Vinyl-coated Masonite 3-lane 32 foot [6] |       40.00 |
+|                             | Plastic 3-lane 32 foot [7]               |      520.00 |
+| Solenoid                    | Lock-style[8]                            |       14.95 |
+| Relay for Solenoid          | Raspberry Pi module[9]                   |        5.99 |
+| Power for Solenoid          | Wall Mount [10]                          |        9.99 |
+| Cable for solenoid          | Standard connection cable (2x)           |        5.00 |
+| Displays                    | 3x 7 segment displays[11]                |       30.00 |
+| IR emitter and detector     | 3x[12]                                   |        6.00 |
+| Screws, bolts, wood, pieces |                                          |       30.00 |
+|-----------------------------+------------------------------------------+-------------|
+| Total                       |                                          | Approx. 142 |
+
+I already have 2 Raspberry Pis and an Arduino.
+
+
+[1] GitHub Search Results, https://github.com/search?q=pinewood+derby&type=Repositories&utf8=%E2%9C%93
+[2] nilbus/pinewood-derby, Edward Anderson https://github.com/nilbus/pinewood-derby
+[3] Project - Grand Prix (Pinewood Derby) Timer, Jarrod Sinclair, https://jarrodsinclair.wordpress.com/project-grand-prix-pinewood-derby-timer/, Fun with Electronics and Code
+[4] PiWood Derby, Sam Graham, https://github.com/Sam-Gram/PiWood-Derby
+[5] BestTrack Prices, http://www.besttrack.com/prices.htm
+[6] How To Build A Cheap Pinewood Derby Track, Wayne Schmidt, http://www.waynesthisandthat.com/pinewoodderbytrack
+[7] Derby Magic Pricing, The Derby Magic Company, http://www.derbymagic.com/pricing.html
+[8] Lock-style Solenoid, Adafruit, inc., https://www.adafruit.com/products/1512
+[9] SunFounder Relay Module for Arduino and Raspberry Pi - OEM, http://www.newegg.com/Product/Product.aspx?Item=9SIA8ND34H1615&nm_mc=KNC-GoogleMKP-PC&cm_mmc=KNC-GoogleMKP-PC-_-pla-_-EC+-+Sensors+%26+Transducers-_-9SIA8ND34H1615&gclid=CjwKEAjw9OG4BRDJzY3jrMng4iQSJABddor1-bscysyGEFVnzBOtkmexo1qEUguAZO_cFQ9UODixxxoCowrw_wcB&gclsrc=aw.ds
+[10] 12V Wall Mount Switching Power Supplies, http://www.ledsupply.com/power-supplies/12v-wall-mount-switching-power-supply?gclid=CjwKEAjw9OG4BRDJzY3jrMng4iQSJABddor13wZeQ6aH91SWqjUcsaqc0IJCI3KD8lOxadQsWGQqCBoCQfjw_wcB
+[11] Adafruit 0.56" 4-Digit 7-Segment Display w/I2C Backpack - Red, https://www.adafruit.com/products/878
+[12] Infrared Emitters and Diodes, https://www.sparkfun.com/products/241

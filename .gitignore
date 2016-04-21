@@ -60,3 +60,11 @@ target/
 
 #Ipython Notebook
 .ipynb_checkpoints
+
+# Emacs Save Files
+*~
+
+# Auto generated org files
+*.html
+*.tex
+*.pdf
