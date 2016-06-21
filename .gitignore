@@ -68,3 +68,7 @@ target/
 *.html
 *.tex
 *.pdf
+
+# Sqlite file
+*.db
+
