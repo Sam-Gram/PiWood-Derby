@@ -7,3 +7,4 @@ sudo apt-get install -y libqt4-sql-sqlite
 
 echo "Setting up database"
 touch piwood.db
+python installDatabase.py

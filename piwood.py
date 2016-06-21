@@ -16,24 +16,27 @@ class MainWindow(QMainWindow):
         self.initUI()
 
     def initUI(self):
+        # TODO: https://pyside.github.io/docs/pyside/PySide/QtSql/QSqlTableModel.html#PySide.QtSql.QSqlTableModel
         db = QSqlDatabase.addDatabase("QSQLITE")
         db.setDatabaseName("piwood.db")
         db.open()
 
-        model = QSqlQueryModel()
-        model.setQuery("select * from racers", db)
+        model = QSqlTableModel(None, db)
+        model.setTable("racers")
+        model.setEditStrategy(QSqlTableModel.OnFieldChange)
 
         projectView = QTableView()
         projectView.setModel(model)
 
-        testButton = QPushButton("Test")
-        testButton.setToolTip("Run a test on the <b>track's</b> displays")
+        # TODO: Throw into seperate loop and test
+        testButton = QPushButton("Test Sensors and Displays")
+        testButton.setToolTip("Run a test on the track's sensors and displays")
         testButton.clicked.connect(stubFunction)
-        
+
         rightDockWidget = QDockWidget()
         rightDockWidget.setWidget(testButton)
         rightDockWidget.setFeatures(QDockWidget.NoDockWidgetFeatures)
-        
+
         self.setCentralWidget(projectView)
         self.addDockWidget(QtCore.Qt.DockWidgetArea.RightDockWidgetArea,
                            rightDockWidget)
@@ -43,36 +46,30 @@ class MainWindow(QMainWindow):
         exitAction.setStatusTip('Exit application')
         exitAction.triggered.connect(self.close)
 
-        
+
         menubar = self.menuBar()
         fileMenu = menubar.addMenu('&File')
         fileMenu.addAction(exitAction)
-        
+
         self.statusBar().showMessage('Ready')
-        
+
         self.setGeometry(300,300,250,150)
         self.showMaximized()
         self.setWindowTitle('PiWood-Derby')
         self.show()
 
-    def updateStatusBar(self, string):
-        self.statusBar().showMessage(string)
-
-
-
-class PiWood:    
+class PiWood:
     def __init__(self):
         self.app = QApplication(sys.argv)
         self.setUpGui()
-        
+
         print('Setting up displays')
 
         sys.exit(self.app.exec_())
 
     def setUpGui(self):
         self.mw = MainWindow()
-        
-        
+
 
 if __name__ == '__main__':
     PiWood()
