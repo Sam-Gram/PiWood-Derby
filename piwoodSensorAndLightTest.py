@@ -48,7 +48,10 @@ timesList = [blueTime, redTime, greenTime]
 def displayTimes():
     for i, display in enumerate(displayList):
         display.clear()
-        display.print_float(timesList[i], decimal_digits=3)
+
+        # Ensure that the the number fits on the displays
+        # Adjust the digit place depending if the time is ten seconds or greater
+        display.print_float(timesList[i] % 100, decimal_digits=(3 if timesList[i] < 10.0 else 2))
         display.write_display()
 
 
@@ -60,12 +63,6 @@ def my_callback(channel):
         displayTimes()
 
     print(channel)
-        # sleep(1.5)  # confirm the movement by waiting 1.5 sec
-        # if GPIO.input(7): # and check again the input
-        #     # stop detection for 20 sec
-        #     GPIO.remove_event_detect(7)
-        #     sleep(20)
-        #     GPIO.add_event_detect(7, GPIO.RISING, callback=my_callback, bouncetime=300)
 
 
 for input_ in inputList:
@@ -73,10 +70,7 @@ for input_ in inputList:
                           callback=my_callback,
                           bouncetime=300)
 
-# TODO move to events
+# Main loop for test
 while True:
     time.sleep(0.0001)
-    # for i in range(3):
-    #     displayList[i].clear()
-    #     displayList[i].print_hex(GPIO.input(inputList[i]))
-    #     displayList[i].write_display()
+
