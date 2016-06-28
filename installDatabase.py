@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 import sys
 import time
 from PySide import QtCore
