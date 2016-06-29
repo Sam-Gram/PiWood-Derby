@@ -42,13 +42,9 @@ class MainWindow(QMainWindow):
         testButton.setToolTip("Run a test on the track's sensors and displays")
         testButton.clicked.connect(stubFunction)
 
-        insertButton = QPushButton("Insert Racer")
+        insertButton = QPushButton("&Insert Racer")
         insertButton.setToolTip("Adds racer to table")
         insertButton.clicked.connect(self.insertRacer)
-
-        saveButton = QPushButton("Save the table")
-        saveButton.setToolTip("Save the table to the database.")
-        saveButton.clicked.connect(self.saveTable)
 
         clearButton = QPushButton("Clear the table")
         clearButton.setToolTip("Clear the table")
@@ -56,8 +52,7 @@ class MainWindow(QMainWindow):
 
         controlsLayout.addWidget(testButton)
         controlsLayout.addWidget(insertButton)
-        controlsLayout.addWidget(saveButton)
-        controlsLayout.addWidget(saveButton)
+        controlsLayout.addWidget(clearButton)
 
         controls.setLayout(controlsLayout)
 
