@@ -1,7 +1,6 @@
 #!/usr/bin/python
 
 import sys
-import time
 from sqlQueries import dropQuery, createQuery, insertEmptyRacerQuery
 from PySide import QtCore
 from PySide.QtSql import *
