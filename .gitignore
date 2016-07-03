@@ -63,6 +63,7 @@ target/
 
 # Emacs Save Files
 *~
+*#*
 
 # Auto generated org files
 *.html
