@@ -6,7 +6,7 @@ from Adafruit_LED_Backpack import SevenSegment
 
 GPIO.setmode(GPIO.BOARD)
 
-# The inputs being used 
+# The inputs being used
 blueInputPin = 11
 redInputPin = 13
 greenInputPin = 15
@@ -25,6 +25,10 @@ displayList = [blueDisplay, redDisplay, greenDisplay]
 
 # List of GPIO inputs
 inputList = [blueInputPin, redInputPin, greenInputPin]
+
+# Initialize Displays
+for display in displayList:
+    display.begin()
 
 # Turn off displays when killed
 def signal_handler(signal, frame):
