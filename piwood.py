@@ -27,6 +27,16 @@ class MainWindow(QMainWindow):
         self.model = QSqlTableModel(None, self.db)
         self.model.setTable("racers")
         self.model.setEditStrategy(QSqlTableModel.EditStrategy.OnFieldChange)
+        # TODO: Remove ID row
+        # self.model.removeColumn(0)
+        
+        self.model.setHeaderData(0, QtCore.Qt.Orientation.Horizontal, "ID")
+        self.model.setHeaderData(1, QtCore.Qt.Orientation.Horizontal, "Name")
+        self.model.setHeaderData(2, QtCore.Qt.Orientation.Horizontal, "Race 1")
+        self.model.setHeaderData(3, QtCore.Qt.Orientation.Horizontal, "Race 2")
+        self.model.setHeaderData(4, QtCore.Qt.Orientation.Horizontal, "Race 3")
+        self.model.setHeaderData(5, QtCore.Qt.Orientation.Horizontal, "Average")
+        self.model.setHeaderData(6, QtCore.Qt.Orientation.Horizontal, "Scale Speed")
 
         # Populates the table, needed to show data
         self.model.select()
