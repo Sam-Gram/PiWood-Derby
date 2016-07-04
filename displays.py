@@ -14,12 +14,17 @@ class Displays():
             display.begin()
 
     # Takes a set of 3 numbers and displays them in order: blue, red and green
-    def displayTimes(timesList):
-        for i, display in enumerate(displayList):
+    def displayTimes(self, timesList):
+        for i, display in enumerate(self.displayList):
             display.clear()
 
             # Ensure that the the number fits on the displays
             # Adjust the digit place depending if the time is ten seconds or greater
 
-            display.write_float(timesList[i] % 100, decimal_digits=(3 if timesList[i] < 10 else 2))
+            display.print_float(timesList[i] % 100, decimal_digits=(3 if timesList[i] < 10 else 2))
+            display.write_display()
+
+    def clear(self):
+        for display in self.displayList:
+            display.clear()
             display.write_display()
