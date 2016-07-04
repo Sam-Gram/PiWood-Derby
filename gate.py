@@ -2,7 +2,9 @@ import RPi.GPIO as GPIO
 
 class Gate():
     def __init__(self):
-        GPIO.setmode(GPIO.BOARD)
+        if GPIO.getmode() != GPIO.BOARD:
+            GPIO.setmode(GPIO.BOARD)
+
         # Pin for the solenoid release gate
         self.gateOutputPin = 19
 

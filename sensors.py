@@ -5,7 +5,8 @@ import RPi.GPIO as GPIO
 
 class Sensors():
     def __init__(self):
-        GPIO.setmode(GPIO.BOARD)
+        if GPIO.getmode() != GPIO.BOARD:
+            GPIO.setmode(GPIO.BOARD)
 
         # The inputs being used
         self.blueInputPin  = 11
