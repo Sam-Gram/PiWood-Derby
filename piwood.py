@@ -60,9 +60,13 @@ class MainWindow(QMainWindow):
         # TODO: Make it kill the whole table.
         clearButton.clicked.connect(lambda _: None)
 
+        startRaceButton = QPushButton("Start Race")
+        startRaceButton.clicked.connect(self.startRace)
+
         controlsLayout.addWidget(testButton)
         controlsLayout.addWidget(insertButton)
         controlsLayout.addWidget(clearButton)
+        controlsLayout.addWidget(startRaceButton)
 
         controls.setLayout(controlsLayout)
 
@@ -100,6 +104,16 @@ class MainWindow(QMainWindow):
         # Populates the table, needed to show data
         self.model.select()
 
+    def startRace(self):
+        raceNum = 0
+        numCars = 6
+        racers = racerCalculator(raceNum, numCars)
+        msgBox = QMessageBox()
+        msgBox.setText("Place car numbered: " +
+                       str(racers[0]) +
+                       str(racers[1]) +
+                       str(racers[2]))
+        msgBox.exec_()
 
     # Save all changes to the table
     def saveTable(self):
