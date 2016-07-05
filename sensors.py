@@ -39,6 +39,12 @@ class Sensors():
     def getTimes(self):
         return self.timesList
 
+    def getState(self):
+        return (GPIO.input(self.blueInputPin),
+                GPIO.input(self.redInputPin),
+                GPIO.input(self.greenInputPin))
+
+
     # The callback is called in it's own thread
     def start(self):
         self.startTime = time.time()

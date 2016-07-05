@@ -6,14 +6,13 @@ from PySide import QtCore
 from PySide.QtSql import *
 from PySide.QtGui import *
 from PySide.QtDeclarative import QDeclarativeView
-
-def stubFunction():
-    print("Stub Function Executed")
-
+from track import Track
+from racerCalculator import racerCalculator
 
 class MainWindow(QMainWindow):
-    def __init__(self):
+    def __init__(self, track):
         super(MainWindow, self).__init__()
+        self.track = track
         self.initUI()
 
     def initUI(self):
@@ -29,7 +28,7 @@ class MainWindow(QMainWindow):
         self.model.setEditStrategy(QSqlTableModel.EditStrategy.OnFieldChange)
         # TODO: Remove ID row
         # self.model.removeColumn(0)
-        
+
         self.model.setHeaderData(0, QtCore.Qt.Orientation.Horizontal, "ID")
         self.model.setHeaderData(1, QtCore.Qt.Orientation.Horizontal, "Name")
         self.model.setHeaderData(2, QtCore.Qt.Orientation.Horizontal, "Race 1")
@@ -48,9 +47,9 @@ class MainWindow(QMainWindow):
         controls = QWidget()
         controlsLayout = QVBoxLayout()
 
-        testButton = QPushButton("Test Sensors and Displays")
-        testButton.setToolTip("Run a test on the track's sensors and displays")
-        testButton.clicked.connect(stubFunction)
+        testButton = QPushButton("Test Gate, Sensors and Displays")
+        testButton.setToolTip("Run a test on the track's gate, displays and sensors. After the displays clear waivin your hand under the sensors will change the displays for about ten seconds, then the test is done.")
+        testButton.clicked.connect(self.track.test)
 
         insertButton = QPushButton("&Insert Racer")
         insertButton.setToolTip("Adds racer to table")
@@ -58,7 +57,8 @@ class MainWindow(QMainWindow):
 
         clearButton = QPushButton("Clear the table")
         clearButton.setToolTip("Clear the table")
-        clearButton.clicked.connect(stubFunction)
+        # TODO: Make it kill the whole table.
+        clearButton.clicked.connect(lambda _: None)
 
         controlsLayout.addWidget(testButton)
         controlsLayout.addWidget(insertButton)
@@ -118,14 +118,15 @@ class MainWindow(QMainWindow):
 class PiWood:
     def __init__(self):
         self.app = QApplication(sys.argv)
-        self.setUpGui()
+        self.track = Track()
+        self.setUpGui(self.track)
 
         print('Setting up displays')
 
         sys.exit(self.app.exec_())
 
-    def setUpGui(self):
-        self.mw = MainWindow()
+    def setUpGui(self, track):
+        self.mw = MainWindow(track)
 
 
 if __name__ == '__main__':

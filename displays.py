@@ -28,3 +28,9 @@ class Displays():
         for display in self.displayList:
             display.clear()
             display.write_display()
+
+    def displayHex(self, hexList):
+        for i, display in enumerate(self.displayList):
+            display.clear()
+            display.print_hex(hexList[i])
+            display.write_display()

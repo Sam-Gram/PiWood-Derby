@@ -1,3 +1,4 @@
+import time
 from displays import Displays
 from sensors import Sensors
 from gate import Gate
@@ -9,6 +10,7 @@ class Track():
         self.gate = Gate()
 
     def startRace(self):
+        self.displays.clear()
         self.gate.release()
         self.sensors.start()
 
@@ -21,3 +23,19 @@ class Track():
 
     def getTimes(self):
         return self.sensors.getTimes()
+
+    def test(self):
+        self.gate.release()
+        time.sleep(2)
+        self.gate.reset()
+        self.displays.displayHex([0xba5e, 0xba11, 0x0])
+        time.sleep(2)
+        self.displays.displayHex([0x0, 0xcafe, 0xbabe])
+        time.sleep(2)
+        self.displays.displayHex([0xdead, 0x0, 0xbeef])
+        time.sleep(2)
+        self.displays.clear()
+        time.sleep(1)
+        currentTime = time.time()
+        while (currentTime + 10.0) > time.time():
+            self.displays.displayTimes(self.sensors.getState())
