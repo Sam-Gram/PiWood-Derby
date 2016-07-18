@@ -1,0 +1,41 @@
+# How-To
+---
+1. Get a track
+This should be simple, I built mine off of http://www.pinewoodpro.com/images/pinewood-derby-track-plan.pdf
+I used screws insead of the brads.
+Additionally, the gate release mechanism is different.
+2. Hook up the displays
+I used Adafruit's 7-Segment displays with I2C backpacks:
+https://www.adafruit.com/products/878
+I used the colors blue, red, and green.
+I wired them as shown in thier tutorial and soldered them to be on I2Cs 0x70 (blue), 0x71 (red), and 0x72(green) spots.
+These all connect over the same four pins:
+Pin 1: Power
+Pin 3: Data
+Pin 5: Clock
+Pin 6: Ground
+
+3. Hook up the IR sensors:
+I used Adafruit's 5mm break beam sensors https://www.adafruit.com/products/2168, and wired them like so:
+Pin 17: Power
+Pin 39: Ground
+Pin 11: Blue Input Pin
+Pin 13: Red Input Pin
+Pin 15: Green Input Pin
+
+4. Hook up gate release:
+I used yet another Adafruit product a Lock-style solenoid: https://www.adafruit.com/products/1512
+This was flipped so that it would latch the track release from the bottom.
+I used this diagram http://playground.arduino.cc/uploads/Learning/solenoid_driver.pdf to wire it using a TIP120 transistor. https://www.adafruit.com/products/976
+This was hooked up like so:
+Pin 19: Output to solenoid
+Pin 34: Ground
+12 Volt DC adapter (from a thrift store) was attached to this circuit as seen in the diagram mentioned above.
+This also required many feet of wiring which I got from the local Ace hardware stor.
+
+5. Install Software
+You will need to clone this repo onto a Raspberry Pi running Rasbian.
+You will also need to enable your I2C connection under the advanced settings in the commandline raspi-config tool.
+Then you will need to run install.sh from this repo.
+
+
