@@ -20,6 +20,7 @@ class Track():
         # Make sure we can reset the gate
         self.gate.reset()
         self.displays.displayTimes(self.sensors.getTimes())
+        return self.sensors.getTimes()
 
     def getTimes(self):
         return self.sensors.getTimes()
@@ -39,3 +40,4 @@ class Track():
         currentTime = time.time()
         while (currentTime + 10.0) > time.time():
             self.displays.displayTimes(self.sensors.getState())
+        self.displays.clear()

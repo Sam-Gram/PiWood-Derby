@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
 import sys
-from sqlQueries import dropQuery, createQuery, insertEmptyRacerQuery
+from sqlQueries import dropQuery, createQuery, insertEmptyRacerQuery, createRaceQuery, dropRaceQuery, incrementRaceQuery, getRaceNumQuery, getNumberOfRacersQuery
 from PySide import QtCore
 from PySide.QtSql import *
 from PySide.QtGui import *
@@ -63,10 +63,18 @@ class MainWindow(QMainWindow):
         startRaceButton = QPushButton("Start Race")
         startRaceButton.clicked.connect(self.startRace)
 
+        goBackOneRaceButton = QPushButton("Go Back One Race")
+        goBackOneRaceButton.clicked.connect(self.goBackOneRace)
+
+        stopRaceButton = QPushButton("Stop Race")
+        stopRaceButton.clicked.connect(self.stopRace)
+
         controlsLayout.addWidget(testButton)
         controlsLayout.addWidget(insertButton)
         controlsLayout.addWidget(clearButton)
         controlsLayout.addWidget(startRaceButton)
+        controlsLayout.addWidget(goBackOneRaceButton)
+        controlsLayout.addWidget(stopRaceButton)
 
         controls.setLayout(controlsLayout)
 
@@ -105,15 +113,49 @@ class MainWindow(QMainWindow):
         self.model.select()
 
     def startRace(self):
-        raceNum = 0
-        numCars = 6
-        racers = racerCalculator(raceNum, numCars)
+        QSqlQuery(incrementRaceQuery)
+        raceNum = QSqlQuery(getRaceNumQuery)
+        raceNum.first()
+        raceNum = raceNum.record().field(0).value()
+        numCars = QSqlQuery(getNumberOfRacersQuery)
+        numCars.first()
+        numCars = numCars.record().field(0).value()
+        self.racers = racerCalculator(raceNum, numCars)
         msgBox = QMessageBox()
         msgBox.setText("Place car numbered: " +
-                       str(racers[0]) +
-                       str(racers[1]) +
-                       str(racers[2]))
+                       str(self.racers[0] + 1) + " " +
+                       str(self.racers[1] + 1) + " " +
+                       str(self.racers[2] + 1))
         msgBox.exec_()
+        self.track.startRace()
+
+    def goBackOneRace(self):
+        QSqlQuery("UPDATE race_num SET num = num - 1;")
+        
+    def stopRace(self):
+        times = self.track.stopRace()
+        print(times)
+        print("racers " + str(self.racers))
+        whichRace = self.getWhichRace(self.racers[0] + 1)
+        QSqlQuery("UPDATE racers SET time_" + str(whichRace) + " = " + str(times[0]) + " WHERE id = " + str(self.racers[0] + 1))
+
+        whichRace = self.getWhichRace(self.racers[1] + 1)
+        QSqlQuery("UPDATE racers SET time_" + str(whichRace) + " = " + str(times[1]) + " WHERE id = " + str(self.racers[1] + 1))
+
+        whichRace = self.getWhichRace(self.racers[2] + 1)
+        QSqlQuery("UPDATE racers SET time_" + str(whichRace) + " = " + str(times[2]) + " WHERE id = " + str(self.racers[2] + 1))
+        self.model.select()
+
+    def getWhichRace(self, id):
+        times = QSqlQuery("SELECT (time_1, time_2, time_3) FROM racers WHERE id = " + str(id))
+        times.first()
+        print(times.record().field(0).value())
+        if times.record().field(0).value() is None:
+            return 1
+        if times.record().field(1).value() is None:
+            return 2
+        if times.record().field(2).value() is None:
+            return 3
 
     # Save all changes to the table
     def saveTable(self):
