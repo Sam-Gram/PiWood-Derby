@@ -33,6 +33,9 @@ Pin 34: Ground
 12 Volt DC adapter (from a thrift store) was attached to this circuit as seen in the diagram mentioned above.
 This also required many feet of wiring which I got from the local Ace hardware stor.
 
+Note: this was later changed to just be two long 32 foot cables that connect at the start of the track. When the gate is released the timer starts.
+This was just done on pin 33 and 34 with a resistor. I need a better solenoid that Adafruit one doesn't have the power to release the gate.
+
 5. Install Software
 You will need to clone this repo onto a Raspberry Pi running Rasbian.
 You will also need to enable your I2C connection under the advanced settings in the commandline raspi-config tool.
